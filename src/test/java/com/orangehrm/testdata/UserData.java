@@ -11,7 +11,7 @@ public class UserData {
                 "Admin@123456",
                 "ESS",
                 "Enabled",
-                "quan"
+                "man"
         );
     }
 
