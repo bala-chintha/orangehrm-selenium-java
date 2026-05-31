@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="OrangeHRM Smoke Suite" verbose="1" parallel="tests" thread-count="2">
+
+    <listeners>
+        <listener class-name="com.orangehrm.listeners.TestListener"/>
+    </listeners>
+
+    <test name="Smoke - Login">
+        <groups>
+            <run>
+                <include name="smoke"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.orangehrm.tests.LoginTest"/>
+        </classes>
+    </test>
+
+    <test name="Smoke - Dashboard">
+        <groups>
+            <run>
+                <include name="smoke"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.orangehrm.tests.DashboardTest"/>
+        </classes>
+    </test>
+
+    <test name="Smoke - PIM">
+        <groups>
+            <run>
+                <include name="smoke"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.orangehrm.tests.PimTest"/>
+        </classes>
+    </test>
+
+    <test name="Smoke - Admin">
+        <groups>
+            <run>
+                <include name="smoke"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.orangehrm.tests.AdminTest"/>
+        </classes>
+    </test>
+
+    <test name="Smoke - Leave">
+        <groups>
+            <run>
+                <include name="smoke"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.orangehrm.tests.LeaveTest"/>
+        </classes>
+    </test>
+
+</suite>

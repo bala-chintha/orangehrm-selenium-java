@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.orangehrm</groupId>
+    <artifactId>orangehrm-selenium-java</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+    <name>OrangeHRM Selenium Java TestNG Framework</name>
+    <description>UI automation for OrangeHRM Demo using Selenium 4, Java 21, TestNG</description>
+
+    <!-- ─── Centralised version control ───────────────────────────────────── -->
+    <properties>
+        <java.version>21</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <selenium.version>4.21.0</selenium.version>
+        <webdrivermanager.version>5.8.0</webdrivermanager.version>
+        <testng.version>7.10.1</testng.version>
+        <extentreports.version>5.1.1</extentreports.version>
+        <commonsio.version>2.16.1</commonsio.version>
+        <surefire.version>3.2.5</surefire.version>
+        <compiler.plugin.version>3.13.0</compiler.plugin.version>
+
+        <!-- Default values — overridden by profiles or -D flags -->
+        <suite>testng.xml</suite>
+        <browser>chrome</browser>
+        <headless>false</headless>
+        <retry.count>0</retry.count>
+    </properties>
+
+    <!-- ─── Dependencies ──────────────────────────────────────────────────── -->
+    <dependencies>
+
+        <!-- Selenium Java -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium.version}</version>
+        </dependency>
+
+        <!-- WebDriverManager — auto-downloads ChromeDriver / GeckoDriver -->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>${webdrivermanager.version}</version>
+        </dependency>
+
+        <!-- TestNG -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
+        </dependency>
+
+        <!-- ExtentReports for HTML reporting -->
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>${extentreports.version}</version>
+        </dependency>
+
+        <!-- Commons IO for screenshot file handling -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commonsio.version}</version>
+        </dependency>
+
+    </dependencies>
+
+    <!-- ─── Build plugins ─────────────────────────────────────────────────── -->
+    <build>
+        <plugins>
+
+            <!-- Compiler -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${compiler.plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+
+            <!-- Surefire — wires TestNG suite, passes -D flags through -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${surefire.version}</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>src/test/resources/${suite}</suiteXmlFile>
+                    </suiteXmlFiles>
+                    <systemPropertyVariables>
+                        <browser>${browser}</browser>
+                        <headless>${headless}</headless>
+                    </systemPropertyVariables>
+                    <!-- Show test output in console for easier debugging -->
+                    <rerunFailingTestsCount>${retry.count}</rerunFailingTestsCount>
+                    <redirectTestOutputToFile>false</redirectTestOutputToFile>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <!-- ─── Profiles ──────────────────────────────────────────────────────── -->
+    <profiles>
+
+        <!-- Default: full suite, headed Chrome -->
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite>testng.xml</suite>
+                <browser>chrome</browser>
+                <headless>false</headless>
+                <retry.count>0</retry.count>
+            </properties>
+        </profile>
+
+        <!-- Smoke: fast subset, headed Chrome -->
+        <profile>
+            <id>smoke</id>
+            <properties>
+                <suite>testng-smoke.xml</suite>
+                <browser>chrome</browser>
+                <headless>false</headless>
+                <retry.count>0</retry.count>
+            </properties>
+        </profile>
+
+        <!-- CI: full suite, headless Chrome -->
+        <profile>
+            <id>ci</id>
+            <properties>
+                <suite>testng.xml</suite>
+                <browser>chrome</browser>
+                <headless>true</headless>
+                <retry.count>2</retry.count>
+            </properties>
+        </profile>
+
+    </profiles>
+
+</project>

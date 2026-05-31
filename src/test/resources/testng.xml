@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="OrangeHRM Full Suite" verbose="1" parallel="none">
+
+
+    <groups>
+        <define name="smoke"/>
+        <define name="login"/>
+        <define name="dashboard"/>
+        <define name="pim"/>
+        <define name="admin"/>
+        <define name="leave"/>
+    </groups>
+
+    <listeners>
+        <listener class-name="com.orangehrm.listeners.TestListener"/>
+    </listeners>
+
+    <test name="Login Tests">
+        <classes>
+            <class name="com.orangehrm.tests.LoginTest"/>
+        </classes>
+    </test>
+
+    <test name="Dashboard Tests">
+        <classes>
+            <class name="com.orangehrm.tests.DashboardTest"/>
+        </classes>
+    </test>
+
+    <test name="PIM Tests">
+        <classes>
+            <class name="com.orangehrm.tests.PimTest"/>
+        </classes>
+    </test>
+
+    <test name="Admin Tests">
+        <classes>
+            <class name="com.orangehrm.tests.AdminTest"/>
+        </classes>
+    </test>
+
+    <test name="Leave Tests">
+        <classes>
+            <class name="com.orangehrm.tests.LeaveTest"/>
+        </classes>
+    </test>
+
+</suite>

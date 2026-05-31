@@ -1,0 +1,29 @@
+# Application URL — replace with your target environment URL
+base.url=https://opensource-demo.orangehrmlive.com
+
+# Admin credentials — replace with your actual credentials
+# In CI these come from GitHub Secrets (ADMIN_USERNAME, ADMIN_PASSWORD) — never hardcoded
+# For the public OrangeHRM demo site: username=Admin, password=admin123
+admin.username=YOUR_USERNAME
+admin.password=YOUR_PASSWORD
+
+# Browser: chrome | firefox | edge
+browser=chrome
+
+# Run headless: true | false  (CI profile forces true automatically)
+headless=false
+
+# Implicit wait — KEEP AT 0. Never mix with explicit waits.
+implicit.wait=0
+
+# Explicit wait timeout (seconds) — increase on slow networks
+explicit.wait=45
+
+# Page load timeout (seconds)
+page.load.timeout=90
+
+# Screenshot directory (relative to project root, auto-created at runtime)
+screenshot.dir=reports/screenshots
+
+# ExtentReport output path (auto-created at runtime)
+extent.report.path=reports/ExtentReport.html
