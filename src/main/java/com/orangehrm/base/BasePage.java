@@ -97,6 +97,19 @@ public abstract class BasePage {
         } while (attempt < maxRetries);
     }
 
+    public void jsClick(By locator) {
+        WebElement el = waitForVisible(locator);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", el);
+    }
+
+    public void scrollToElement(By locator) {
+        WebElement el = waitForVisible(locator);
+        ((JavascriptExecutor) driver)
+                .executeScript("arguments[0].scrollIntoView({block:'center'});", el);
+
+        pageLoader.waitForSpinnerToDisappear();
+    }
+
     public void type(By locator, String text) {
         WebElement el = waitForVisible(locator);
         el.clear();

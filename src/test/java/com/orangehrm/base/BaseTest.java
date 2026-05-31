@@ -65,18 +65,24 @@ public class BaseTest {
             case "chrome":
             default:
                 WebDriverManager.chromedriver().setup();
-                ChromeOptions chromeOpts = new ChromeOptions();
+                ChromeOptions opts = new ChromeOptions();
                 if (headless) {
-                    chromeOpts.addArguments("--headless=new");
-                    chromeOpts.addArguments("--no-sandbox");
-                    chromeOpts.addArguments("--disable-dev-shm-usage");
+                    opts.addArguments("--headless=new");
+                    opts.addArguments("--no-sandbox");
+                    opts.addArguments("--disable-dev-shm-usage");
+                    opts.addArguments("--disable-gpu");
+                    opts.addArguments("--window-size=1920,1080");
+                    opts.addArguments("--remote-allow-origins=*");
+                } else {
+                    opts.addArguments("--start-maximized");
                 }
-                chromeOpts.addArguments("--start-maximized");
-                chromeOpts.addArguments("--disable-notifications");
-                chromeOpts.addArguments("--disable-popup-blocking");
-                chromeOpts.setExperimentalOption("excludeSwitches",
+                opts.addArguments("--disable-notifications");
+                opts.addArguments("--disable-popup-blocking");
+                opts.addArguments("--disable-extensions");
+                opts.addArguments("--disable-infobars");
+                opts.setExperimentalOption("excludeSwitches",
                         new String[]{"enable-automation"});
-                driver = new ChromeDriver(chromeOpts);
+                driver = new ChromeDriver(opts);
                 break;
         }
 

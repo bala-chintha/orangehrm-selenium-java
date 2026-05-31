@@ -102,9 +102,8 @@
                     <systemPropertyVariables>
                         <browser>${browser}</browser>
                         <headless>${headless}</headless>
+                        <retry.count>${retry.count}</retry.count>
                     </systemPropertyVariables>
-                    <!-- Show test output in console for easier debugging -->
-                    <rerunFailingTestsCount>${retry.count}</rerunFailingTestsCount>
                     <redirectTestOutputToFile>false</redirectTestOutputToFile>
                 </configuration>
             </plugin>

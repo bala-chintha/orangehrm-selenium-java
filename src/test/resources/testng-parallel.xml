@@ -5,6 +5,7 @@
 <suite name="OrangeHRM Parallel Suite" verbose="1" parallel="tests" thread-count="3">
 
     <listeners>
+        <listener class-name="com.orangehrm.listeners.RetryListener"/>
         <listener class-name="com.orangehrm.listeners.TestListener"/>
     </listeners>
 

@@ -4,6 +4,7 @@
 <suite name="OrangeHRM Smoke Suite" verbose="1" parallel="tests" thread-count="2">
 
     <listeners>
+        <listener class-name="com.orangehrm.listeners.RetryListener"/>
         <listener class-name="com.orangehrm.listeners.TestListener"/>
     </listeners>
 
